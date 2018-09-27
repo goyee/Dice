@@ -1,3 +1,4 @@
+int counter = 0;
 void setup()
 {
 	noLoop();
@@ -5,34 +6,83 @@ void setup()
 }
 void draw()
 {
-		background(0);
-	for(int y = 25; y <= 475; i += 125)
+	background(100);
+	for(int y = 50; y <= 350; y += 100)
 	{
-		for(int x = 25; x <= 475; x += 125)
+		for(int x = 50; x <= 350; x += 100)
 			{
-				Die.show();
-				Die.roll();
+				Die one = new Die (x,y);
+				one.show();
 			}
 	}
+	textAlign(CENTER);
+	text("Total: "+counter,250,495);
 }
 void mousePressed()
 {
 	redraw();
+	counter = 0;
 }
 class Die //models one single dice cube
 {
-	//variable declarations here
+	int myX, myY, rollValue;
 	
 	Die(int x, int y) //constructor
 	{
-		//variable initializations here
-	}
-	void roll()
-	{
-		//your code here
+		myX = x;
+		myY = y;
+		rollValue = (int)(Math.random()*5+1);
 	}
 	void show()
 	{
-		//your code here
+		fill(255);
+		rect(myX,myY,100,100,10);
+		fill(0);
+
+		if(rollValue == 1)
+		{
+			ellipse(myX+50,myY+50,15,15);
+			counter = counter + 1;
+		}
+		else if(rollValue == 2)
+		{
+			ellipse(myX+25,myY+25,15,15);
+			ellipse(myX+75,myY+75,15,15);
+			counter = counter + 2;
+		}
+		else if(rollValue == 3)
+		{
+			ellipse(myX+25,myY+25,15,15);
+			ellipse(myX+50,myY+50,15,15);
+			ellipse(myX+75,myY+75,15,15);
+			counter = counter + 3;
+		}
+		else if(rollValue == 4)
+		{
+			ellipse(myX+25,myY+25,15,15);
+			ellipse(myX+25,myY+75,15,15);
+			ellipse(myX+75,myY+25,15,15);
+			ellipse(myX+75,myY+75,15,15);
+			counter = counter + 4;
+		}
+		else if(rollValue == 5)
+		{
+			ellipse(myX+25,myY+25,15,15);
+			ellipse(myX+25,myY+75,15,15);
+			ellipse(myX+50,myY+50,15,15);
+			ellipse(myX+75,myY+25,15,15);
+			ellipse(myX+75,myY+75,15,15);
+			counter = counter + 5;
+		}
+		else
+		{
+			ellipse(myX+25,myY+25,15,15);
+			ellipse(myX+25,myY+75,15,15);
+			ellipse(myX+25,myY+50,15,15);
+			ellipse(myX+75,myY+50,15,15);
+			ellipse(myX+75,myY+25,15,15);
+			ellipse(myX+75,myY+75,15,15);
+			counter = counter + 6;
+		}
 	}
 }
