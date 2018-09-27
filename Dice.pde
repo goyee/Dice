@@ -23,7 +23,7 @@ void mousePressed()
 	redraw();
 	counter = 0;
 }
-class Die //models one single dice cube
+class Die
 {
 	int myX, myY, rollValue;
 	
